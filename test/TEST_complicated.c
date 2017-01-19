@@ -18,6 +18,11 @@ int main(int argc, char **argv)
 		goto fail;
 	}
 
+	if (complicated(-1) != 1)
+	{
+		goto fail;
+	}
+
 	printf("Success!\n");
 	return 0;
 fail:

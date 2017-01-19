@@ -1,7 +1,6 @@
 language: c
 install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq lcov curl
+  - sudo brew update
 script:
   - export COVERALLS_SERVICE_NAME=travis-ci
   - export COVERALLS_REPO_TOKEN=GRa7URBPMIh2Gd0ZiPi5JyXqpcKBHG9bC
