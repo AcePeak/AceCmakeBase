@@ -1,7 +1,17 @@
 language: c
-install:
-  - sudo brew update
-script:
+before_install:
+#C projects on travis-ci.org assume you use Autotools and Make by default.
+install: make get-deps
+  - sudo apt-get update -qq
+#  - sudo apt-get install -y -qq lcov curl
+before_script:
   - export COVERALLS_SERVICE_NAME=travis-ci
   - export COVERALLS_REPO_TOKEN=GRa7URBPMIh2Gd0ZiPi5JyXqpcKBHG9bC
+script:
   - mkdir build && cd build && cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug .. && cmake --build . && cmake --build . --target coveralls
+after_success:
+after_failure:
+before_deploy:
+deploy:
+after_deploy:
+after_script:
