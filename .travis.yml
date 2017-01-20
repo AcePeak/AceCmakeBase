@@ -1,7 +1,7 @@
 language: c
 before_install:
 #C projects on travis-ci.org assume you use Autotools and Make by default.
-install: make get-deps
+install: 
   - sudo apt-get update -qq
 #  - sudo apt-get install -y -qq lcov curl
 before_script:
