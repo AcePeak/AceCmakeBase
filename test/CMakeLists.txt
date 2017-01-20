@@ -1,20 +1,10 @@
 
-# Setup the coveralls target and tell it to gather
-# coverage data for all the lib sources.
-if (COVERALLS)
-	coveralls_setup(
-        "../src/" 
-        ${COVERALLS_UPLOAD}                 
-        "${PROJECT_SOURCE_DIR}/coveralls-cmake/cmake")
-endif()
-
-# Add a test for the library.
-enable_testing()
-
 include_directories ("../src/sample")
 
-add_executable(sample_regress
-				${PROJ_TEST_PATH}/TEST_sample.cpp)
+# 查找当前目录下的所有源文件并将名称保存到 PROJ_SRC 变量
+aux_source_directory(. PROJ_TEST)
+
+add_executable(sample_regress ${PROJ_TEST})
 
 target_link_libraries(sample_regress sample)
 

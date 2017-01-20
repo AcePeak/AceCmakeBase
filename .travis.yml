@@ -1,15 +1,20 @@
 language: cpp
 before_install:
 #C projects on travis-ci.org assume you use Autotools and Make by default.
+  - pip install --user cpp-coveralls
 install: 
   - sudo apt-get update -qq
 #  - sudo apt-get install -y -qq lcov curl
 before_script:
   - export COVERALLS_SERVICE_NAME=travis-ci
   - export COVERALLS_REPO_TOKEN=xG5lOQXwTrK3T3yUsjLeRXNlzRgZ9xo9p
+  - mkdir build
+  - cd build 
+  - cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug ..
 script:
-  - mkdir build && cd build && cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug .. && cmake --build . && cmake --build . --target coveralls
+  - make
 after_success:
+  - coveralls --exclude CMakeFiles --exclude test --gcov-options '\-lp'
 after_failure:
 before_deploy:
 deploy:

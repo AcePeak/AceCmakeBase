@@ -7,17 +7,15 @@ project(AceCmakeBase)
 # 是否开启Coveralls支持，默认不支持
 option(COVERALLS "Turn on coveralls support" OFF)
 
-# 是否上传Coveralls结果，默认上传
-option(COVERALLS_UPLOAD "Upload the generated coveralls json" ON)
-
 # 设置modulepath包括子模块
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} 
 	${PROJECT_SOURCE_DIR}/coveralls-cmake/cmake)
 
 # 如果开启Coveralls，调用子模块内容
 if (COVERALLS)
-	include(Coveralls)
-	coveralls_turn_on_coverage()
+  SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage")
+  SET(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage")
+  #SET(CMAKE_EXE_LINKER_FLAGS_DEBUG "${CMAKE_EXE_LINKER_FLAGS_DEBUG} -fprofile-arcs -ftest-coverage -lgcov")
 endif()
 
 # 设置全局默认路径
