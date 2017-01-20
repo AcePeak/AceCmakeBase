@@ -3,7 +3,7 @@
 # coverage data for all the lib sources.
 if (COVERALLS)
 	coveralls_setup(
-        "${PROJ_SRC}" 
+        "../src/" 
         ${COVERALLS_UPLOAD}                 
         "${PROJECT_SOURCE_DIR}/coveralls-cmake/cmake")
 endif()

@@ -1,4 +1,4 @@
-language: c
+language: cpp
 before_install:
 #C projects on travis-ci.org assume you use Autotools and Make by default.
 install: 
