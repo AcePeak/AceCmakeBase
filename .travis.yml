@@ -6,7 +6,7 @@ install:
 #  - sudo apt-get install -y -qq lcov curl
 before_script:
   - export COVERALLS_SERVICE_NAME=travis-ci
-  - export COVERALLS_REPO_TOKEN=GRa7URBPMIh2Gd0ZiPi5JyXqpcKBHG9bC
+  - export COVERALLS_REPO_TOKEN=xG5lOQXwTrK3T3yUsjLeRXNlzRgZ9xo9p
 script:
   - mkdir build && cd build && cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug .. && cmake --build . && cmake --build . --target coveralls
 after_success:

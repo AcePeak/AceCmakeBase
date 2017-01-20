@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/AcePeak/coveralls-cmake-example.svg?branch=master)](https://travis-ci.org/JoakimSoderberg/coveralls-cmake-example)
-[![Coverage Status](https://coveralls.io/repos/github/AcePeak/coveralls-cmake-example/badge.svg?branch=master)](https://coveralls.io/github/AcePeak/coveralls-cmake-example?branch=master)
+[![Build Status](https://travis-ci.org/AcePeak/AceCmakeBase.svg?branch=master)](https://travis-ci.org/AcePeak/AceCmakeBase)
+[![Coverage Status](https://coveralls.io/repos/github/AcePeak/AceCmakeBase/badge.svg?branch=master)](https://coveralls.io/github/AcePeak/AceCmakeBase?branch=master)
 Coveralls CMake example project
 ===============================
 
