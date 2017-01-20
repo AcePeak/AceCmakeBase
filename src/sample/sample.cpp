@@ -1,6 +1,6 @@
-#include <stdio.h>
+#include "sample.h"
 
-int complicated(int a)
+int Sample::sample(int a)
 {
 	if (a >= 3)
 	{
