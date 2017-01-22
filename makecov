@@ -1,0 +1,2 @@
+#!/bin/bash
+coveralls -e src/main.cpp -e build/CMakeFiles -e test --dump build/cov.json
