@@ -15,6 +15,7 @@ script:
   - make
   - test/sample_regress
 after_success:
+  - cd ..
   - coveralls --exclude CMakeFiles --exclude test --gcov-options '\-lp'
 after_failure:
 before_deploy:
