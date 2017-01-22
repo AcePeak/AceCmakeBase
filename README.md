@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/AcePeak/AceCmakeBase.svg?branch=master)](https://travis-ci.org/AcePeak/AceCmakeBase)
 [![Coverage Status](https://coveralls.io/repos/github/AcePeak/AceCmakeBase/badge.svg?branch=master)](https://coveralls.io/github/AcePeak/AceCmakeBase?branch=master)
+[![Code Health](https://landscape.io/github/AcePeak/AceCmakeBase/master/landscape.svg?style=flat)](https://landscape.io/github/AcePeak/AceCmakeBase/master)
 
 AceCmakeBase sample project
 ===============================
