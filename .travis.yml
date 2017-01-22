@@ -16,7 +16,7 @@ script:
   - test/sample_regress
 after_success:
   - cd ..
-  - coveralls --exclude build --exclude test --exclude src/main.cpp --gcov-options '\-lp'
+  - coveralls -e src/main.cpp -e test --gcov-options '\-lp'
 after_failure:
 before_deploy:
 deploy:
