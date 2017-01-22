@@ -7,29 +7,102 @@ AceCmakeBase sample project
 
 This is an base project including travis-ci and coveralls indicator supports by default.
 
-Usage
------
+# Instructions
 
-```bash
-$ git clone https://github.com/AcePeak/AceCmakeBase
-$ cd coveralls-cmake-example
-$ git submodule update --init
-$ mkdir build && cd build
-$ cmake -DCOVERALLS=ON -DCMAKE_BUILD_TYPE=Debug ..
-$ make
-$ make coveralls 	##may not work in local machine build.
+ * Build your project with [gcov support](http://gcc.gnu.org/onlinedocs/gcc/Gcov.html)
+ * Run tests
+ * Run `coveralls`
+
+## Environment variables
+
+`cpp-coveralls` recognizes the following environment variables:
+- `COVERALLS_REPO_TOKEN`
+- `COVERALLS_ENDPOINT`
+- `COVERALLS_PARALLEL`
+
+
+## Usage:
+
+```
+$ coveralls -h
+usage: coveralls [-h] [--verbose] [--dryrun] [--gcov FILE]
+                 [--gcov-options GCOV_OPTS] [-r DIR] [-b DIR] [-e DIR|FILE]
+                 [-i DIR|FILE] [-E REGEXP] [-x EXT] [-y FILE] [-n] [-t TOKEN]
+                 [--encodings ENCODINGS [ENCODINGS ...]] [--dump [FILE]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --verbose             print verbose messages
+  --dryrun              run coveralls without uploading report
+  --gcov FILE           set the location of gcov
+  --gcov-options GCOV_OPTS
+                        set the options given to gcov
+  -r DIR, --root DIR    set the root directory
+  -b DIR, --build-root DIR
+                        set the directory from which gcov will be called; by
+                        default gcov is run in the directory of the .o files;
+                        however the paths of the sources are often relative to
+                        the directory from which the compiler was run and
+                        these relative paths are saved in the .o file; when
+                        this happens, gcov needs to run in the same directory
+                        as the compiler in order to find the source files
+  -e DIR|FILE, --exclude DIR|FILE
+                        set exclude file or directory
+  -i DIR|FILE, --include DIR|FILE
+                        set include file or directory
+  -E REGEXP, --exclude-pattern REGEXP
+                        set exclude file/directory pattern
+  -x EXT, --extension EXT
+                        set extension of files to process
+  -y FILE, --coveralls-yaml FILE
+                        coveralls yaml file name (default: .coveralls.yml)
+  -n, --no-gcov         do not run gcov
+  -t TOKEN, --repo-token TOKEN, --repo_token TOKEN
+                        set the repo_token of this project, alternatively you
+                        can set the environmental variable
+                        COVERALLS_REPO_TOKEN
+  --encodings ENCODINGS [ENCODINGS ...]
+                        source encodings to try in order of preference
+                        (default: ['utf-8', 'latin-1'])
+  --dump [FILE]         dump JSON payload to a file
 ```
 
-FAQ
+## Example `.travis.yml`
 
-Q: After I've setup everything according to the guide I get this message when running the script on Travis-ci:
+### Linux
 
-{"message":"Couldn't find a repository matching this job.","error":true}
-What is wrong?
+Install `cpp-coveralls` with `pip`, add *gcov* to your compilation option, compile, run your test and send the result to http://coveralls.io :
+```
+language: cpp
+compiler:
+  - gcc
+before_install:
+  - pip install --user cpp-coveralls
+script:
+  - ./configure --enable-gcov && make && make check
+after_success:
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
+```
 
-A: Not sure why this happens sometimes. But one thing to try is to try the solution mentioned in this ticket: https://github.com/lemurheavy/coveralls-public/issues/279
+### OS X
 
-That is, adding this to your .travis.yml before cmake is run
+*Python* on *OS X* can be a bit of a hassle so you need to install to set up your custom environment:
 
-- export COVERALLS_SERVICE_NAME=travis-ci
-- export COVERALLS_REPO_TOKEN=abc12345
+```
+language: objective-c
+compiler:
+  - gcc
+before_install:
+  - brew update
+  - brew install pyenv
+  - eval "$(pyenv init -)"
+  - pyenv install 2.7.6
+  - pyenv global 2.7.6
+  - pyenv rehash
+  - pip install cpp-coveralls
+  - pyenv rehash
+script:
+  - ./configure --enable-gcov && make && make check
+after_success:
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
+```
